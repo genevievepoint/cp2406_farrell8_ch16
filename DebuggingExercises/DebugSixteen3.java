@@ -25,7 +25,7 @@ public class DebugSixteen3 extends JPanel implements ActionListener
      add(firstText);
      add(secText);
      add (findOutButton);
-     findOutbutton.addActionListener(this);
+     findOutButton.addActionListener(this);
    }
 
    @Override
@@ -33,20 +33,24 @@ public class DebugSixteen3 extends JPanel implements ActionListener
    {
       ++counter;
       if(counter < reason.length)
-         findOutButton.setEnabled(false);        
+         findOutButton.setEnabled(false);
+       repaint();
+
    }
    @Override
    public void paintComponent(Graphics g)
    {
+       super.paintComponent(g);
        g.setFont(boldFont);
-       g.setColor(Color.BLUE);;
+       g.setColor(Color.BLUE);
+       y = 50;
        for(int i = 0; i < counter; ++i)
-         g.drawString(reason[i], x, y += GAP);
+           g.drawString(reason[i], x, y += GAP);
     }   
    public static void main(String[] args)
    {
       JFrame frame = new JFrame();
-      frame.add(new DebugSixteen3);
+      frame.add(new DebugSixteen3());
       frame.setSize(350, 250);
       frame.setVisible(true);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
